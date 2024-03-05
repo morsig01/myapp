@@ -1,0 +1,94 @@
+"use client"
+import React from "react";
+import {useRef, useEffect} from "react";
+
+const Blackhole = ()=> {
+    const myCanvas = useRef(0);
+    var ctx, planet1, numOrbitingPlanets, orbitingPlanets, centerX, centerY;
+    useEffect(()=>{
+        if(myCanvas.current){
+            var canvas = myCanvas.current;
+ctx = canvas.getContext('2d');
+
+// Set canvas size
+canvas.width = window.innerWidth / 2; // Adjust width as needed
+canvas.height = window.innerHeight;
+
+// Define center coordinates
+centerX = canvas.width / 2;
+centerY = canvas.height / 2;
+
+// Define the main planet
+planet1 = {
+    x: canvas.width / 2,
+    y: centerY,
+    radius: 50,
+    speed: 0.01,
+    angle: 0
+};
+
+// Define the number of orbiting planets
+numOrbitingPlanets = 100;
+orbitingPlanets = [];
+
+// Create orbiting planets
+for (var i = 0; i < numOrbitingPlanets; i++) {
+    var distance = 100 + Math.random() * 300; // Vary distance between 100 and 400
+    var angle = Math.random() * Math.PI * 2; // Random angle
+    var size = 5 + Math.random() * 15; // Vary size between 5 and 20
+    var color = getWarmColor(); // Get a warm color
+    orbitingPlanets.push({
+        distance: distance,
+        radius: size,
+        speed: 0.04 + Math.random() * 0.15, // Randomize speed a bit
+        angle: angle,
+        color: color
+    });
+}
+draw(); // Start animation
+        }
+    },[])
+    // var canvas = document.getElementById('canvas');
+    
+
+function getWarmColor() {
+    var red = Math.floor(Math.random() * 256);
+    var green = Math.floor(Math.random() * 64); // Limiting green to keep the color warm
+    var blue = 0; // No blue component
+    return 'rgb(' + red + ',' + green + ',' + blue + ')';
+}
+
+function draw() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update main planet position slightly
+    planet1.x += Math.random() - 0.5;
+    planet1.y += Math.random() - 0.5;
+
+    // Draw the main planet
+    ctx.beginPath();
+    ctx.arc(planet1.x, planet1.y, planet1.radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+
+    // Draw the orbiting planets
+    for (var i = 0; i < numOrbitingPlanets; i++) {
+        var planet = orbitingPlanets[i];
+        var planetX = centerX + planet.distance * Math.cos(planet.angle);
+        var planetY = centerY + planet.distance * Math.sin(planet.angle);
+        ctx.beginPath();
+        ctx.arc(planetX, planetY, planet.radius, 0, Math.PI * 2);
+        ctx.fillStyle = planet.color;
+        ctx.fill();
+
+        // Update position of orbiting planet
+        planet.angle += planet.speed;
+    }
+
+    requestAnimationFrame(draw);
+}
+
+    return <canvas ref={myCanvas} id="canvas">blackhole</canvas>
+}
+export default Blackhole
