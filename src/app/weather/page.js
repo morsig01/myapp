@@ -34,6 +34,7 @@ export default async function Home() {
               {timeobj.data.instant.details.wind_speed}m/s
               <br></br>
             </div>
+            <div className="break"></div>
           </div>
           </>
         )
