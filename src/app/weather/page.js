@@ -1,19 +1,21 @@
 import Image from "next/image";
-// import styles from "./page.module.css";
 import "./page.css";
-
-export default function Home() {
-  return (
-    <><div class="split left">
-      <div class="centered">
-        <h2>Black hole</h2>
-        <p>Some text.</p>
-      </div>
-    </div>
-    <div class="split right">
-        <div class="centered">
-        </div>
-      </div></>
-      
-  )
+ 
+async function getData() {
+  const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=60.10&lon=10', {next: {revalidate: 3600} })
+ 
+  if (!res.ok){
+    throw new Error('Failed to fetch data')
+  }
+console.log(res)
+  return res.json()
+}
+export default async function Home() {
+  const data = await getData();
+ 
+  return <main>
+    {
+      data.properties.timeseries.map(time => {return <div>{time.time}</div>})
+    }
+  </main>
 }
