@@ -6,14 +6,9 @@
 <title>Planet Rotation</title>
 <style>
     body {
-        margin: 0;
+        margin: auto;
         overflow: hidden;
-        background-color: #111; /* Very dark grey */
-    }
-    canvas {
-        display: block;
-        margin-left: auto;
-        margin-right: 0;
+        background-color: #000; /* Very dark grey */
     }
 </style>
 </head>
@@ -42,7 +37,7 @@
     };
 
     // Define the number of orbiting planets
-    var numOrbitingPlanets = 300;
+    var numOrbitingPlanets = 250;
     var orbitingPlanets = [];
 
     // Create orbiting planets
@@ -54,15 +49,15 @@
         orbitingPlanets.push({
             distance: distance,
             radius: size,
-            speed: 0.04 + Math.random() * 0.15, // Randomize speed a bit
+            speed: 0.02 + Math.random() * 0.07, // Randomize speed a bit
             angle: angle,
             color: color
         });
     }
 
     function getWarmColor() {
-        var red = Math.floor(Math.random() * 256);
-        var green = Math.floor(Math.random() * 16); // Limiting green to keep the color warm
+        var red = Math.floor(Math.random() * 0);
+        var green = Math.floor(Math.random() * 256); // Limiting green to keep the color warm
         var blue = 0; // No blue component
         return 'rgb(' + red + ',' + green + ',' + blue + ')';
     }
