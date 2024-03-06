@@ -15,7 +15,7 @@ export default async function Home() {
  
   return <main>
     {
-      data.properties.timeseries.map(time => {return <div>{time.time}</div>})
+      data.properties.timeseries.map((time,index) => {return <div key={index}>{time.time}</div>})
     }
   </main>
 }
