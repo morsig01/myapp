@@ -2,7 +2,7 @@ import Image from "next/image";
 import "./page.css";
  
 async function getData() {
-  const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=60.10&lon=10', {next: {revalidate: 3600} })
+  const res = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=60.7945&lon=11.06798', {next: {revalidate: 3600} })
  
   if (!res.ok){
     throw new Error('Failed to fetch data')
@@ -23,16 +23,19 @@ export default async function Home() {
         return(
           <>
           <div className="style">
-
-           <div className="bracket">
+              <div className="dato">
               <h1>Dato</h1>
               {timeobj.time}
-              <br></br>
+              </div>
+            <div className="bracket">
+              <div className="temp">
               <h1>Temperatur</h1>
               {timeobj.data.instant.details.air_temperature}
+              </div>
+              <div className="vind">
               <h1>Vindstyrke</h1>
               {timeobj.data.instant.details.wind_speed}m/s
-              <br></br>
+              </div>
             </div>
             <div className="break"></div>
           </div>

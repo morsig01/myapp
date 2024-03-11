@@ -8,7 +8,7 @@
     body {
         margin: auto;
         overflow: hidden;
-        background-color: #000; /* Very dark grey */
+        background-color: #111; /* Very dark grey */
     }
 </style>
 </head>
