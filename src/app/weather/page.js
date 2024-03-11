@@ -23,22 +23,32 @@ export default async function Home() {
         return(
           <>
           <div className="style">
-              <div className="dato">
+            <div className="dato">
               <h1>Dato</h1>
               {timeobj.time}
+            </div>
+            <div className="container">
+              <div className="bracket1">
+                <div className="temp">
+                  <h1><img src="/temp-icon.png" style={{height: "25px"}}/>Temperatur</h1>
+                  {timeobj.data.instant.details.air_temperature}°C
+                </div>
               </div>
-            <div className="bracket">
-              <div className="temp">
-              <h1>Temperatur</h1>
-              {timeobj.data.instant.details.air_temperature}
+              <div className="bracket2">
+                <div className="vind">
+                  <h1><img src="/wind-icon_2.png" style={{height: "25px"}}/>Vindstyrke</h1>
+                  {timeobj.data.instant.details.wind_speed}m/s
+                </div>
               </div>
-              <div className="vind">
-              <h1>Vindstyrke</h1>
-              {timeobj.data.instant.details.wind_speed}m/s
+              <div className="bracket3">
+                <div className="regn">
+                  <h1><img src="/rain-icon.png" style={{height: "25px"}}/>Regn</h1>
+                  {timeobj.data.instant.details.precipitation_amount}mm
+                </div>
               </div>
             </div>
-            <div className="break"></div>
           </div>
+          <div className="break"></div>
           </>
         )
       }
