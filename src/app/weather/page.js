@@ -15,35 +15,42 @@ export default async function Home() {
  
   return <main> 
     <div className="header">
-        <font size="42">Weather</font>
+      <font size="42">Weather</font>
+      <font size="20">Hamar</font>
     </div>
     {
     data.properties.timeseries.map(
       function(timeobj){
         return(
           <>
+          <div className="side">
+            <img src="/visual_1.gif" style={{height: "326px"}}/>
+          </div>
           <div className="style">
             <div className="dato">
               <h1>Dato</h1>
               {timeobj.time}
             </div>
+            <div className="linehorizontal"></div>
             <div className="container">
               <div className="bracket1">
                 <div className="temp">
-                  <h1><img src="/temp-icon.png" style={{height: "25px"}}/>Temperatur</h1>
+                  <h1><img src="/temp-icon.png" style={{height: "25px"}}/>temperatur</h1>
                   {timeobj.data.instant.details.air_temperature}°C
                 </div>
               </div>
+              <div className="linevertical"></div>
               <div className="bracket2">
                 <div className="vind">
-                  <h1><img src="/wind-icon_2.png" style={{height: "25px"}}/>Vindstyrke</h1>
+                  <h1><img src="/wind-icon_2.png" style={{height: "25px"}}/>vind</h1>
                   {timeobj.data.instant.details.wind_speed}m/s
                 </div>
               </div>
+              <div className="linevertical"></div>
               <div className="bracket3">
                 <div className="regn">
-                  <h1><img src="/rain-icon.png" style={{height: "25px"}}/>Regn</h1>
-                  {timeobj.data.instant.details.precipitation_amount}mm
+                  <h1><img src="/rain-icon.png" style={{height: "25px"}}/>regn</h1>
+                  {timeobj.data.instant.details.precipitation_amount}.0mm
                 </div>
               </div>
             </div>
